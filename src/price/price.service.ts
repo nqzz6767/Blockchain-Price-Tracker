@@ -122,7 +122,7 @@ export class PriceService {
   }
 
   // Schedule job to fetch and save prices every 5 minutes for Ethereum and Polygon
-  @Cron(CronExpression.EVERY_30_SECONDS)
+  @Cron(CronExpression.EVERY_5_MINUTES)
   async handleCron() {
     await this.savePrice('ethereum');
     await this.savePrice('polygon');
