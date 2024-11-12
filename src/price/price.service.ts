@@ -39,7 +39,6 @@ export class PriceService {
 
   // Save the price of the specified chain and check for any alerts
   async savePrice(chain: string): Promise<void> {
-    console.log('savePrice', chain);
     const price = await this.fetchPrice(chain);
     await this.priceRepo.save({ chain, price });
     await this.checkPriceIncrease(chain);
@@ -123,7 +122,7 @@ export class PriceService {
   }
 
   // Schedule job to fetch and save prices every 5 minutes for Ethereum and Polygon
-  @Cron(CronExpression.EVERY_5_MINUTES)
+  @Cron(CronExpression.EVERY_30_SECONDS)
   async handleCron() {
     await this.savePrice('ethereum');
     await this.savePrice('polygon');
