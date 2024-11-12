@@ -21,10 +21,10 @@ export class PriceService {
     let tokenAddress: string;
     let supportedChain;
     if (chain === 'ethereum') {
-      tokenAddress = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'; // WETH address
+      tokenAddress = process.env.WETH_ADDRESS;
       supportedChain = EvmChain.ETHEREUM;
     } else if (chain === 'polygon') {
-      tokenAddress = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'; // WMATIC address
+      tokenAddress = process.env.WMATIC_ADDRESS;
       supportedChain = EvmChain.POLYGON;
     } else {
       throw new Error(`Unsupported chain: ${chain}`);
