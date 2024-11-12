@@ -6,3 +6,38 @@ services:
     network_mode: 'host'
     env_file:
       - .env
+
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: price_tracker
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: my_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com # Login email for pgAdmin
+      PGADMIN_DEFAULT_PASSWORD: admin # Password for pgAdmin
+    ports:
+      - '8080:80' # Expose pgAdmin on localhost:8080
+    depends_on:
+      - postgres
+    networks:
+      - my_network
+
+# Define the named volume
+volumes:
+  postgres_data:
+
+# Define the network
+networks:
+  my_network:
