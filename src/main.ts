@@ -4,7 +4,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  //Swagger Configuration
+
+  // Swagger Configuration
   const config = new DocumentBuilder()
     .setTitle('Blockchain Price Tracker')
     .setDescription('API documentation for price tracking and alerts')
